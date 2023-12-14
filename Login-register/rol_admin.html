@@ -1,0 +1,13 @@
+<!-- En tu interfaz de administración -->
+<form action="cambiar_rol.php" method="post">
+    <label for="nombreUsuario">Nombre de usuario:</label>
+    <input type="text" id="nombreUsuario" name="nombreUsuario" required>
+    <label for="nuevoRol">Nuevo rol:</label>
+    <select id="nuevoRol" name="nuevoRol" required>
+        <option value="usuario">Usuario</option>
+        <option value="administrador">Administrador</option>
+        <option value="invitado">Invitado</option>
+        
+    </select>
+    <button type="submit">Cambiar Rol</button>
+</form>
