@@ -1,0 +1,203 @@
+header {
+    background-color: rgb(0,38,250);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   
+    padding: 1%;
+    font-style: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 90%;
+    font-weight: bold;
+ }
+ 
+ .menu {
+    color: white;
+ }
+ .dropdown span {
+   color: rgb(255,82 ,0 ) /* Color naranjo */ 
+}
+
+.logo img {
+   width: 25px;
+   height: auto;
+}
+ .dropdown-content {
+   display: none;
+   position: absolute;
+   background-color: rgb(0,38,250);
+   min-width: 160px;
+   box-shadow: 0px 8px 16px 0px rgba(0,0,0,1);
+   z-index: 1;
+}
+
+.dropdown-content a {
+   color: white;
+   padding: 12px 16px;
+   text-decoration: none;
+   display: block;
+}
+
+.dropdown-content a:hover {
+   background-color: #f1f1f1;
+   color: rgb(0,38,250);
+}
+
+.dropdown:hover .dropdown-content {
+   display: block;
+}
+footer {
+   display: flex;
+   justify-content: space-around;
+   padding: 2% 0;
+   background-color:rgb(0,38,250);
+}
+.footer-column {
+   width: 30%;
+   text-align: left;
+}
+
+.footer-column h4 {
+   margin-bottom: 8%;
+
+}
+
+.footer-column ul {
+   list-style-type: none;
+   padding: 0;
+}
+
+.footer-column li a {
+   text-decoration: none;
+   color: whitesmoke;
+}
+
+/* AQUI EMPIEZA MI CODIGO -----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.carousel-container {
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    margin-top: 1%;
+    margin-bottom: 0%;
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel a img {
+    width: 120%;
+    height: auto;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 24px;
+    user-select: none;
+    color: #333;
+}
+
+.prev {
+    left: .5%;
+}
+
+.next {
+    right: .5%;
+}
+
+.bottom-content {
+    text-align: center;
+    margin-top: .5%;
+    margin-bottom: .5%;
+    background-color: rgb(255, 255, 255);
+    padding: .8%;
+    border-radius: .5%;
+    margin-left: .5%;
+    margin-right: .5%;
+}
+
+.bottom-content img {
+    width: 100%;
+    max-width: 400px; /* Ajusta según sea necesario */
+    height: auto;
+    margin-bottom: .5%;
+}
+
+/* DE AQUI PARA ABAJO VAN EL TITULO NOTICIA ---------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+.containerrr {
+    background-color: rgb(255, 82, 0);
+    border-radius: 10px;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-bottom: .5%;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 1);
+    
+}
+
+.containerrr h1 {
+    text-align: center;
+    color: rgb(255, 255, 255);
+    padding-top: 1%;
+}
+
+/* DE AQUI PARA ABAJO VAN EL TITULO DE LA NOTICIA ---------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/* Estilos para el div */
+.miDiv2 {
+    text-align: center;
+    padding: 2.5%;
+    border: none; /* Elimina el borde */
+    background-color: transparent; /* Fondo transparente para eliminar el color de fondo predeterminado */
+}
+
+.historia2 {
+    padding: 20px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    overflow: auto; /* o overflow: hidden; */
+    max-width: 100%; /* o el valor que desees */
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-bottom: 2.5%;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilos para enlaces dentro de .historia2 */
+.historia2 a {
+    text-decoration: none !important; /* Quitar subrayado de los enlaces */
+    color: #000 !important; /* Color de texto negro para los enlaces */
+}
+
+/* Estilos para el nuevo div de la imagen */
+.imagenDiv2 {
+    margin-top: 5%; /* Espacio superior para separar del div anterior */
+    margin-bottom: 5%;
+    text-align: center;
+}
+
+/* Estilos para la imagen dentro del div */
+.imagenDiv2 img {
+    max-width: 70%; /* Asegura que la imagen no supere el ancho del div */
+    height: auto; /* Mantiene la proporción original de la imagen */
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+

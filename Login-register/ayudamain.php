@@ -13,7 +13,7 @@
             <div class="dropdown" onclick="toggleDropdown()">
             <img src="imagenes/menu.png" alt="Menú" style="width: 30px; height: 30px;">
                 <div class="dropdown-content" id="myDropdown">
-                    <a href="#!">Modificar cuenta</a>
+                    <a href="admin.php">Modificar cuenta</a>
                     <a href="agregarVideo.php">Mis videos</a>
                     <a href="videos.php">Todos Los Videos</a>
                     <a href="ver_documentos.php">Mis documentos</a>
@@ -39,27 +39,27 @@
             <div class = "preguntas"> <!--SECCIÓN PREGUNTAS--------------------------------------------->
                 <div class="faq-container">
                     <div class="faq-item">
-                      <div class="question" onclick="toggleAnswer(1)">¿Pregunta 1?</div>
-                      <div class="answer" id="answer1">Respuesta 1</div>
+                      <div class="question" onclick="toggleAnswer(1)">¿Puedo registrarme con Google?</div>
+                      <div class="answer" id="answer1">¡Efectivamente! Puedes utilizar tu correo personal o de empresa para nuestra plataforma.</div>
                     </div>
                 
                     <div class="faq-item">
-                      <div class="question" onclick="toggleAnswer(2)">¿Pregunta 2?</div>
-                      <div class="answer" id="answer2">Respuesta 2</div>
+                      <div class="question" onclick="toggleAnswer(2)">¿Para qué tipo de negocios está pensado?</div>
+                      <div class="answer" id="answer2">Nuestra plataforma VEVIVE está preparada para todo tipo de negocios, de pequeñas pymes a grandes empresas regionales.</div>
                     </div>
                     <div class="faq-item">
-                        <div class="question" onclick="toggleAnswer(3)">¿Pregunta 3?</div>
-                        <div class="answer" id="answer3">Respuesta 3</div>
+                        <div class="question" onclick="toggleAnswer(3)">¿Qué formatos de video se aceptan?</div>
+                        <div class="answer" id="answer3">Trabajamos directamente con YouTube, por lo que cualquier formato compatible con esta plataforma servirá.</div>
                       </div>
                       <div class="faq-item">
-                        <div class="question" onclick="toggleAnswer(4)">¿Pregunta 4?</div>
-                        <div class="answer" id="answer4">Respuesta 4</div>
+                        <div class="question" onclick="toggleAnswer(4)">¿Quiénes son ustedes?</div>
+                        <div class="answer" id="answer4">Somos un grupo de 4 estudiantes con una visión de prosperidad en los negocios de la región, por lo que haremos todo lo posible para entregar herramientas como esta para dar a conocer sus historias.</div>
                       </div>  
                     <!-- Agrega más preguntas y respuestas según sea necesario -->
                 
                   </div>
                 
-                <script src="scripts.js"></script>  
+                <script src="scriptsayuda.js"></script>  
 
             </div>
              
@@ -73,7 +73,7 @@
                 var videoId = 'TU_ID_DE_VIDEO';
 
                 // Construye el código del iframe con el ID del video
-                var iframeCode = '<iframe width="90%" height="90%" src="https://www.youtube.com/embed/dXVltYviNEM?si=yf_rBfJcbRg2ACLa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                var iframeCode = '<iframe width="90%" height="90%" src="https://www.youtube.com/embed/qgDs4d3f0YA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
 
                 // Coloca el iframe dentro del div con el id 'navegar' y agrega el título del video
                 document.getElementById('navegar').innerHTML = '<h1>-COMO NAVEGAR-</h1>' + iframeCode;

@@ -1,5 +1,6 @@
 <?php
     session_start();
+        require("php/conexion_be.php");
     // Si no existe la variable de sesión usuario, redirige a la página home.php
     if (!isset($_SESSION['usuario'])) {
         echo '
@@ -9,6 +10,33 @@
             </script>';
         session_destroy();
         die();
+    }
+    $rolUsuario = $_SESSION['rol'];
+
+    // Consulta SQL para seleccionar videos y calcular el rating promedio
+    if ($rolUsuario === 'administrador') {
+        // Si es administrador, mostrar todos los videos
+            // Consulta SQL modificada para incluir el estado del video y excluir los videos inactivos
+        $sqlVideo = "SELECT videos.*, AVG(comentarios.rating) AS rating_promedio
+        FROM videos
+        LEFT JOIN comentarios ON videos.id = comentarios.id_video
+        WHERE videos.estado = 1  -- Cambia la condición a 1 para videos activos
+        GROUP BY videos.id
+        ORDER BY videos.id DESC";
+
+
+    } else {
+        // Obtén el ID del usuario en sesión
+        $idUsuario = $_SESSION['id_usuario'];
+        // Consulta SQL modificada para seleccionar solo los videos del usuario en sesión y calcular el rating promedio
+        $sqlVideo = "SELECT videos.*, AVG(comentarios.rating) AS rating_promedio
+        FROM videos
+        LEFT JOIN comentarios ON videos.id = comentarios.id_video
+        WHERE videos.id_usuario = $idUsuario AND videos.estado = 1
+        GROUP BY videos.id
+        ORDER BY videos.id DESC";
+
+        
     }
 ?>
 
@@ -23,42 +51,68 @@
   <link rel="stylesheet" href="styles2.css">
 </head>
 <body>
-    <header>
+<header>
         <div class="navbar">
             <div class="dropdown" onclick="toggleDropdown()">
-                <img src="imagenes/menu.png" alt="Menú">
-                <div class="dropdown-content" id="myDropdown">
-                    <a href="#!">Modificar cuenta</a>
-                    <a href="agregarVideo.php">Mis videos</a>
-                    <a href="videos.php">Todos Los Videos</a>
-                    <a href="ver_documentos.php">Mis documentos</a>
-                    <a href="todos_los_documentos.php">Todos Los Documentos</a>
-                    <a href="php\cerrar_sesion.php">Cerrar sesión</a>
-                </div>
-            </div>
+            <img src="imagenes/menu.png" alt="Menú" style="width: 30px; height: 30px;">
+
+<div class="dropdown-content" id="myDropdown">
+                <div class="dropdown">
+
+
+        
+        <?php
+        // Mostrar opciones comunes para todos los usuarios
+
+        
+        // Mostrar opciones específicas para el rol de administrador
+        if ($rolUsuario == 'administrador') {          
+            echo '<a href="admin.php">Modificar cuenta</a>';
+            echo '<a href="agregarVideo.php">Mis videos</a>';
+            echo '<a href="videos.php">Todos Los Videos</a>';
+            echo '<a href="ver_documentos.php">Mis documentos</a>';
+            echo '<a href="todos_los_documentos.php">Todos Los Documentos</a>';
+            echo '<a href="php\cerrar_sesion.php">Cerrar sesión</a>';
+        }
+
+        // Mostrar opciones específicas para el rol de usuario
+        if ($rolUsuario == 'usuario') {
+            echo '<a href="usuariosedit.php">Modificar cuenta</a>';
+            echo '<a href="agregarVideo.php">Mis videos</a>';
+            echo '<a href="videos.php">Todos Los Videos</a>';
+            echo '<a href="ver_documentos.php">Mis documentos</a>';
+            echo '<a href="todos_los_documentos.php">Todos Los Documentos</a>';
+            echo '<a href="php\cerrar_sesion.php">Cerrar sesión</a>';
+        }
+
+        // Mostrar opciones específicas para el rol de invitado
+        if ($rolUsuario == 'invitado') {
+            
+        }
+        ?>
+
+    </div>
+    </div>
             <a href="home.php" class="home-button">
                 <img src="imagenes/home.png" alt="home">
             </a>
-        </div>
+        </div>          
     </header> 
+    
 
     <?php
-        require("php/conexion_be.php");
-        // Obtén el ID del usuario en sesión
-        $idUsuario = $_SESSION['id_usuario'];
-        // Consulta SQL modificada para seleccionar solo los videos del usuario en sesión y calcular el rating promedio
-        $sqlVideo = "SELECT videos.*, AVG(comentarios.rating) AS rating_promedio
-                     FROM videos
-                     LEFT JOIN comentarios ON videos.id = comentarios.id_video
-                     WHERE videos.id_usuario = $idUsuario
-                     GROUP BY videos.id
-                     ORDER BY videos.id DESC";
-        $queryVideo = mysqli_query($con, $sqlVideo);
+    $queryVideo = mysqli_query($con, $sqlVideo);
     ?>
     
     <br>   
     <br>
-    
+    <script>
+    // Función para volver a la página anterior
+    function volverAtras() {
+        window.history.back();
+    }
+</script>
+    <a class="btn-volver" onclick="volverAtras()">Volver </a>
     <h2 class="text-center mt-5 mb-3">Mis Videos</h2>
     <a href="formularioVideos.php" class="btn-subir">Subir Video</a>
 
@@ -89,14 +143,55 @@
                     <td><?php echo $dataVideo['tipo_video']; ?></td>
                     <td><?php echo round($dataVideo['rating_promedio'], 2); ?></td>
                     <td>
-                    <a href="deleteVideoYoutube.php?idVideo=<?php echo $dataVideo['id']; ?>" class="btn-delete" onclick="return confirm('¿Estás seguro que deseas eliminar el Video?');">
-                        <i class="fas fa-trash-alt"></i> <!-- Ícono de la papelera -->
-                    </a>
-                    <br>
-                    <br>
-                    <br>
-                    <!-- Agrega esto dentro del bucle de los videos del usuario -->
-                    <a href="editar_video.php?id=<?php echo $dataVideo['id']; ?>" class="btn btn-primary btn-sm">Editar</a>
+                
+                <a href="#" class="btn-delete" onclick="confirmarEliminar(<?php echo $dataVideo['id']; ?>)">
+    <i class="fas fa-trash-alt"></i> <!-- Ícono de la papelera -->
+</a>
+<br>
+<br>
+<br>
+<a href="#" class="btn btn-primary btn-sm" onclick="confirmarEditar(<?php echo $dataVideo['id']; ?>)">
+    <i class="fas fa-edit"></i>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function confirmarEliminar(idVideo) {
+        Swal.fire({
+            title: '¿Estás seguro que deseas eliminar el Video?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Redirigir a desactivarVideo.php con el ID del video
+                window.location.href = `desactivarVideo.php?idVideo=${idVideo}`;
+            }
+        });
+        return false; // Evita que el enlace se siga ejecutando normalmente
+    }
+
+    function confirmarEditar(idVideo) {
+        Swal.fire({
+            title: '¿Quieres editar este Video?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, editar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Redirigir a editar_video.php con el ID del video
+                window.location.href = `editar_video.php?id=${idVideo}`;
+            }
+        });
+        return false; // Evita que el enlace se siga ejecutando normalmente
+    }
+</script>
                 </td>
                 </tr>
                 <?php } ?>

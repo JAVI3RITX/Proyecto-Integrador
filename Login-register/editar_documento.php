@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Documento</title>
-    <link rel="stylesheet" href="styles_editar.css">
+    <link rel="stylesheet" href="styless_editar.css">
 </head>
 <body>
     <header>
@@ -78,7 +78,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <br>
     <br>
     <br>
-   
     <div class="contenedor">
     <h1>Editar Documento</h1>
     <form method="post" action="">

@@ -22,3 +22,6 @@ function prevSlide() {
 
 // Cambiar automáticamente cada 5 segundos
 setInterval(nextSlide, intervalTime);
+
+
+  

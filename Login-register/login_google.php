@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-$clientId = '568239019506-nrh9dn2eocslk0sk3jln5a3tneljlb81.apps.googleusercontent.com';
-$clientSecret = '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';
-$redirectUri = 'http://localhost/xampp/Login-register/login_google.php';
+$clientId = '8093217946-adosmrfnp61erm02ciqqmci4gcg9i55a.apps.googleusercontent.com';
+$clientSecret = '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';
+$redirectUri = 'http://localhost/xampp/Login-registerv3/login_google.php';
 
 $authUrl = 'https://accounts.google.com/o/oauth2/auth';
 $params = array(

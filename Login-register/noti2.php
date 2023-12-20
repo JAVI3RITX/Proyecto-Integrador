@@ -3,34 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles_noti2.css">
+    <link rel="stylesheet" href="styles_noti222.css">
     <title>NOTICIA_2</title>
 </head>
 <header>
-    <div class="dropdown">
-        <span>Menú</span>
-        <div class="dropdown-content">
-           <a href="cuenta.html">Cuenta</a>
-           <a href="#!">Mis videos</a>
-           <a href="#!">Mis documentos</a>
-            <a href="#!">Modificar cuenta</a>
-            <a href="#!">Cerrar sesión</a>
+    <div class="navbar">
+        <div class="dropdown" onclick="toggleDropdown()">
+            <img src="imagenes/menu.png" alt="Menú" style="width: 30px; height: 30px;">
+            <div class="dropdown-content" id="myDropdown">
+                <a href="#!">Modificar cuenta</a>
+                <a href="agregarVideo.php">Mis videos</a>
+                <a href="videos.php">Todos Los Videos</a>
+                <a href="ver_documentos.php">Mis documentos</a>
+                <a href="todos_los_documentos.php">Todos Los Documentos</a>
+                <a href="php\cerrar_sesion.php">Cerrar sesión</a>
+            </div>
         </div>
-       </div>
-    <div class="logo">
-        <a href="home.html">
-            <img src="home.png" alt="logo" >
-        </a>     
-</header> 
+        <a href="home.php" class="home-button">
+            <img src="imagenes/home.png" alt="home" style="width: 30px; height: 30px;">
+        </a>
+    </div>
+</header>
 <!--AQUI EMPIEZA MI CODIGO "HOME"--------------------------------------------->
+
+<br>
+<br>
+<br>
+<br>
 
 <div class="carousel-container">
     <div class="carousel">
-        <a href="..\noti1.html">
-            <img src="..\IMG\BANNER11.jpg" alt="Imagen 1">
+        <a href="noti1.php">
+            <img src="banner1.jpg" alt="Imagen 1">
         </a>
-        <a href="..\noti2.html">
-            <img src="..\IMG\BANNER22.png" alt="Imagen 1">
+        <a href="noti2.php">
+            <img src="banner2.png" alt="Imagen 1">
         <!-- Aqui esta el codigo por si se quiere agregar otro banner
         <a href="..\HOTICIA 3\noti3.html">
             <img src="banner00.jpg" alt="Imagen 1">
@@ -65,9 +72,14 @@
     </p>
 
     <div class="imagenDiv2">
-        <img src="..\IMG\NOTI2.png" alt="Descripción de la imagen">
+        <img src="IMG\NOTI2.png" alt="Descripción de la imagen">
     </div>
 </div>
+
+<center>
+    <!-- Botón con enlace a la página de inicio -->
+    <a href="home.php" class="boton-home">HOME</a>
+</center>
 <!--AQUI TERMINA MI CODIGO "HOME"-------------------------------------------->
 </body>
 <footer>
@@ -83,8 +95,8 @@
     <div class="footer-column">
         <h4>Sobre Nosotros</h4>
         <ul>
-            <li><a href="#"> Quiénes somos?</a></li>
-            <li><a href="#"> aaaaaaaaaaaaa</a></li>
+            <li><a href="ayuda.php"> Quiénes somos?</a></li>
+            <li><a href="#"> Preguntas Frecuentes</a></li>
             <!-- Agrega más elementos de la lista según sea necesario -->
         </ul>
     </div>
@@ -92,10 +104,9 @@
         <h4>Contacto</h4>
         <ul>
             <li><a href="mailto:correos@gmail.com?Subject=Hola%20quisiera%20resolver%20una%20duda">Correo: videos@gmail.com</a></li>
-            <li><a href="tel:+56948835577">Teléfono: +569 99999999</a></li>
+            <li><a href="tel:+569 99999999">Teléfono: +569 99999999</a></li>
             <!-- Agrega más elementos de la lista según sea necesario -->
         </ul>
     </div>
-    
 </footer>
 </html>

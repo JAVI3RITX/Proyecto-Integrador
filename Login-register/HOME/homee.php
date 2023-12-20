@@ -14,7 +14,7 @@
             <div class="dropdown" onclick="toggleDropdown()">
             <img src="..\imagenes\menu.png" alt="Menú" style="width: 30px; height: 30px;">
                 <div class="dropdown-content" id="myDropdown">
-                    <a href="#!">Modificar cuenta</a>
+                    <a href="admin.php">Modificar cuenta</a>
                     <a href="agregarVideo.php">Mis videos</a>
                     <a href="videos.php">Todos Los Videos</a>
                     <a href="ver_documentos.php">Mis documentos</a>
@@ -196,7 +196,7 @@
     <div class="footer-column">
         <h4>Sobre Nosotros</h4>
         <ul>
-            <li><a href="#"> Quiénes somos?</a></li>
+            <li><a href="ayudamain.php"> Quiénes somos?</a></li>
             <li><a href="#"> aaaaaaaaaaaaa</a></li>
             <!-- Agrega más elementos de la lista según sea necesario -->
         </ul>

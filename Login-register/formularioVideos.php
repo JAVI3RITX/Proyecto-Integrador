@@ -1,3 +1,18 @@
+<?php
+    session_start();
+        require("php/conexion_be.php");
+    // Si no existe la variable de sesión usuario, redirige a la página home.php
+    if (!isset($_SESSION['usuario'])) {
+        echo '
+            <script>
+                alert("Debes iniciar sesión para poder entrar a esta página");
+                window.location = "home.php";
+            </script>';
+        session_destroy();
+        die();
+    }
+    $rolUsuario = $_SESSION['rol'];
+        ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,27 +24,61 @@
 </head>
 <body>
 <header>
-<div class="navbar">
-    <div class="dropdown" onclick="toggleDropdown()">
-        <img src="imagenes/menu.png" alt="Menú">
-        <div class="dropdown-content" id="myDropdown">
-            <a href="#!">Cuenta</a>
-            <a href="agregarVideo.php">Mis videos</a>
-            <a href="#!">Mis documentos</a>
-            <a href="#!">Modificar cuenta</a>
-            <a href="videos.php">Todos Los Videos</a>
-            <a href="php\cerrar_sesion.php">Cerrar sesión</a>
-        </div>
+        <div class="navbar">
+            <div class="dropdown" onclick="toggleDropdown()">
+            <img src="imagenes/menu.png" alt="Menú" style="width: 30px; height: 30px;">
+
+<div class="dropdown-content" id="myDropdown">
+                <div class="dropdown">
+
+
+        
+        <?php
+        // Mostrar opciones comunes para todos los usuarios
+
+        
+        // Mostrar opciones específicas para el rol de administrador
+        if ($rolUsuario == 'administrador') {          
+            echo '<a href="admin.php">Modificar cuenta</a>';
+            echo '<a href="agregarVideo.php">Mis videos</a>';
+            echo '<a href="videos.php">Todos Los Videos</a>';
+            echo '<a href="ver_documentos.php">Mis documentos</a>';
+            echo '<a href="todos_los_documentos.php">Todos Los Documentos</a>';
+            echo '<a href="php\cerrar_sesion.php">Cerrar sesión</a>';
+        }
+
+        // Mostrar opciones específicas para el rol de usuario
+        if ($rolUsuario == 'usuario') {
+            echo '<a href="usuariosedit.php">Modificar cuenta</a>';
+            echo '<a href="agregarVideo.php">Mis videos</a>';
+            echo '<a href="videos.php">Todos Los Videos</a>';
+            echo '<a href="ver_documentos.php">Mis documentos</a>';
+            echo '<a href="todos_los_documentos.php">Todos Los Documentos</a>';
+            echo '<a href="php\cerrar_sesion.php">Cerrar sesión</a>';
+        }
+
+        // Mostrar opciones específicas para el rol de invitado
+        if ($rolUsuario == 'invitado') {
+            
+        }
+        ?>
+
     </div>
-    <a href="home.php" class="home-button">
-        <img src="imagenes/home.png" alt="home">
-    </a>
-</div>
-</header> 
+    </div>
+            <a href="home.php" class="home-button">
+                <img src="imagenes/home.png" alt="home">
+            </a>
+        </div>          
+    </header> 
 <body>
-    <br>
-    <br>
 <div class="container mt-5 pd-5">
+<script>
+    // Función para volver a la página anterior
+    function volverAtras() {
+        window.history.back();
+    }
+</script>
+    <a class="btn-volver" onclick="volverAtras()">Volver </a>
     <h2 class="text-center">Sube un video a la plataforma</h2>
     <hr>
 

@@ -13,6 +13,7 @@
     <title>Pagina de videos</title>
 </head>
 
+
 <body>
 
     <div class="container" id="container">
@@ -35,14 +36,15 @@
             <form action="php/login_usuario_be.php" method="POST" class="formulario__login">
                 <h1>Acceder</h1>
                 <div class="enlace">
-                    <img src="imagenes/ui.svg">
                     <?php require ('autentificacion.php')?>
-                    <a href="<?php echo $client->createAuthUrl() ?>">Iniciar sesión con Google</a>
+                    <a href="login_google.php">
+                        <img src="imagenes/ui.svg" alt="Botón de Google Login">Iniciar Sesion con Google
+                    </a>
                 </div>
                 <span>O usa tu correo y contraseña</span>
                 <input type="email" placeholder="Correo" name="correo">
                 <input type="password" placeholder="Contraseña" name="contrasena">
-                <a href="RECUPERAR PASS\recuperar_pass\recuperar_clave.php">Olvidaste tu contraseña?</a>
+                <a href="RECUPERAR PASS\recuperar_clave.php">Olvidaste tu contraseña?</a>
                 <button>Acceder</button>
             </form>
         </div>
@@ -61,7 +63,6 @@
             </div>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 

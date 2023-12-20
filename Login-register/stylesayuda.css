@@ -1,355 +1,362 @@
 .main{
-    font-family: 'Times New Roman', Times, serif;
+  font-family: 'Times New Roman', Times, serif;
+ 
 }
 
 .centro-ayuda {
-    background-color: rgb(255, 82, 0);
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,1);
-    padding: 1.5%;
-    text-align: center;
-    color: white;
-    font-size: 350%;
-    font-weight: bold;
-    border-radius: 10px;
-    margin-right: 10.5%;
-    margin-left: 9.5%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-  }
+  background-color: rgb(255, 82, 0);
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+  padding: 1.5%;
+  text-align: center;
+  color: white;
+  font-size: 350%;
+  font-weight: bold;
+  border-radius: 10px;
+  margin-right: 10.5%;
+  margin-left: 9.5%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
 
 .preguntas {/* DIV PREGUNTAS GLOBAL */ 
-    background-color: rgb(255, 255, 255);
-    
-    border-radius: 10px;
-    padding: .5%;
-    text-align: center;
-    margin-right: 10%;
-    margin-left: 10%;
-    margin-bottom: 2%;
+  background-color: rgb(255, 255, 255);
+  
+  border-radius: 10px;
+  padding: .5%;
+  text-align: center;
+  margin-right: 10%;
+  margin-left: 10%;
+  margin-bottom: 2%;
 }
 .preguntas p{
-    text-align: left;
+  text-align: left;
 }
 
 
 
 
 .contenedor { /* DIV DE ABAJO*/ 
-    background-color: rgb(255, 255, 255);
-    display: flex;
-    padding: 3%;
-   
-    justify-content: space-between;
-    flex-direction: row-reverse;
-    
-    
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  padding: 3%;
+ 
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  
+  
 }
 
 
 
 nav ul {
-    list-style: none;
-    overflow: hidden;
+  list-style: none;
+  overflow: hidden;
 }
 nav ul li {
-    float: left;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 20px;
+  float: left;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 20px;
 }
 
 nav ul li a{
-    display: block;
-    padding: 15px;
-    color: rgb(255, 255, 255);
-    text-decoration: none;
+  display: block;
+  padding: 15px;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
 }
 nav ul li:hover{
-    background-color: aqua;
+  background-color: aqua;
 }
 
 
-    
-   
+
+header {
+  background-color: rgb(0,38,250);
+  display:flex ;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1%;
+  font-style: normal;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 90%;
+  font-weight: bold;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ajusta la propiedad z-index según sea necesario para que el encabezado esté por encima de otros elementos */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Añade una sombra si lo deseas */
+}
+header img {
+width: 100px; /* Tamaño fijo para el logo en el header */
+height: auto; /* Mantener la proporción original */
+max-width: 100%; /* No exceder el 100% del contenedor */
+}
+.navbar {
+display: flex;
+align-items: center;
+}
+
+.dropdown {
+margin-right: 10px; /* Ajusta el margen entre el dropdown y el botón home según tus preferencias */
+}
+
+.dropdown-content {
+display: none;
+/* Resto de tus estilos para el dropdown */
+}
+
+.text-center{
+display: inline-block;
+  background-color: rgb(255,82 ,0 );
+  padding: 1% 8%; 
+  border-radius: 20px; 
+  color: white;    
+}
+.menu {
+  color: white;
+}
+header p {
+color: white; /* Puedes usar cualquier color en formato hexadecimal, RGB, nombre, etc. */
+}
+.table-responsive {
+width: 100%;
+margin-bottom: 1rem;
+background-color: #fff;
+}
+
+.table-responsive th,
+.table-responsive td {
+white-space: nowrap;
+}
+
+.table-responsive th {
+background-color: #f0f0f0;
+}
+
+.dropdown span {
+ color: white /* Color naranjo */ 
+}
+
+.logo a {
+  color: rgb(255,82 ,0 ); /* Cambia el color del texto del enlace "Iniciar sesión" a naranja */
+  text-decoration: none; /* Elimina el subrayado predeterminado */
+}
+
+.logo a:hover {
+  text-decoration: none; /* Elimina el subrayado al pasar el ratón sobre el enlace "Iniciar sesión" */
+}
+
+.dropdown-content {
+ display: none;
+ position: absolute;
+ background-color: rgb(0,38,250);
+ min-width: 160px;
+ box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+ z-index: 1;
+}
+/* Estilos para los enlaces con clase btn-delete y btn-edit */
+.btn-delete,
+.btn-edit {
+display: inline-block;
+margin-right: 10px; /* Espacio entre los enlaces, ajusta según tu preferencia */
+text-decoration: none; /* Quita la subrayado predeterminado de los enlaces */
+padding: 5px 10px; /* Ajusta el espaciado interno según tus preferencias */
+color: #fff; /* Color del texto */
+background-color: #dc3545; /* Color de fondo para borrar (rojo) */
+border: 1px solid #dc3545; /* Borde para resaltar el enlace */
+border-radius: 5px; /* Esquinas redondeadas */
+}
+.video-title a {
+text-decoration: none; /* Elimina el subrayado */
+color:rgb(0,38,250); /* Cambia el color del texto si lo deseas */
+}
+
+.btn-edit {
+background-color: #007bff; /* Color de fondo para editar (azul) */
+border-color: #007bff; /* Borde para resaltar el enlace */
+}
+
+/* Estilos para los íconos dentro de los enlaces */
+.btn-delete i,
+.btn-edit i {
+margin-right: 5px; /* Espacio entre el ícono y el texto, ajusta según tu preferencia */
+}
+
+/* Cambio de color cuando se pasa el mouse sobre el enlace */
+.btn-delete:hover,
+.btn-edit:hover {
+background-color: #c82333; /* Cambia el color de fondo en el hover para borrar */
+border-color: #c82333; /* Cambia el color del borde en el hover para borrar */
+}
+
+.btn-edit:hover {
+background-color: #0056b3; /* Cambia el color de fondo en el hover para editar */
+border-color: #0056b3; /* Cambia el color del borde en el hover para editar */
+}
+
+
+.dropdown-content a {
+ color: white;
+ padding: 12px 16px;
+ text-decoration: none;
+ display: block;
+}
+
+.dropdown-content a:hover {
+ background-color: #f1f1f1;
+ color: rgb(0,38,250);
+}
+
+.dropdown:hover .dropdown-content {
+ display: block;
+}
+
+footer {
+  display: flex;
+  justify-content: space-around;
+  padding: 2% 0;
+  background-color:rgb(0,38,250);
+  margin-top: auto;
+  
+}
+.footer-column {
+  width: 30%;
+  text-align: left;
+}
+
+.footer-column h4 {
+  margin-bottom: 8%;
+  color: rgb(255,82 ,0 );
+ text-align: center;
+}
+
+.footer-column ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+ 
+}
+
+.footer-column li a {
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+  
+ 
 
 #navegar {
-    
-    background-color: rgb(255,82,0);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-    width: 80%;
-    padding: .8%;
-   
-    box-sizing: border-box;
-    border: 1px solid #000000;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
-    border-radius: 5px;
-    cursor: pointer;
-    margin-bottom: 1%;
-    
-    
-    
+  
+  background-color: rgb(255,82,0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  width: 80%;
+  padding: .8%;
+ 
+  box-sizing: border-box;
+  border: 1px solid #000000;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 1%;
+  
+  
+  
 }
 
 
 /* formulario */
 .contenedor2 {
-    width: 560px;
-    height: 315;
-    margin: 0 auto;
-    padding: 1%;
-    background-color: rgb(255,82,0);
-    border-radius: 5px;
-    box-sizing: border-box;
-    border: 1px solid #000000;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
-    border-radius: 5px;
-    cursor: pointer;
-    margin-bottom: 1%;
-    
-    
+  width: 560px;
+  height: 315;
+  margin: 0 auto;
+  padding: 1%;
+  background-color: rgb(255,82,0);
+  border-radius: 5px;
+  box-sizing: border-box;
+  border: 1px solid #000000;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 1%;
+  color: white;
+  
+  
 }
 
 h2 {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: white;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 label {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 input, textarea {
-    margin-bottom: 20px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+  margin-bottom: 20px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
 }
 
 button {
-    margin-top: 10px;
-    padding: 5px 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 button:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
 .boton-enviar {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
- }
-
-  
- .faq-item {
-    border: 1px solid #ddd;
-    background-color: #fff;
-  }
-  
-  .question {
-    background-color: rgb(255,82 ,0 );
-    color: white;
-    padding: 15px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .toggle-icon {
-    font-size: 14px;
-  }
-  
-  .answer {
-    display: none;
-    padding: 15px;
-    font-size: 16px;
-  }
-  
-    
-  header {
-    background-color: rgb(0,38,250);
-    display:flex ;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1%;
-    font-style: normal;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 90%;
-    font-weight: bold;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000; /* Ajusta la propiedad z-index según sea necesario para que el encabezado esté por encima de otros elementos */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Añade una sombra si lo deseas */
- }
- header img {
-  width: 100px; /* Tamaño fijo para el logo en el header */
-  height: auto; /* Mantener la proporción original */
-  max-width: 100%; /* No exceder el 100% del contenedor */
-}
-.navbar {
-  display: flex;
-  align-items: center;
-}
-
-.dropdown {
-  margin-right: 10px; /* Ajusta el margen entre el dropdown y el botón home según tus preferencias */
-}
-
-.dropdown-content {
-  display: none;
-  /* Resto de tus estilos para el dropdown */
-}
-
-.text-center{
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
   display: inline-block;
-    background-color: rgb(255,82 ,0 );
-    padding: 1% 8%; 
-    border-radius: 20px; 
-    color: white;    
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
- .menu {
-    color: white;
-    
- }
- header p {
-  color: white; /* Puedes usar cualquier color en formato hexadecimal, RGB, nombre, etc. */
- }
- .table-responsive {
-  width: 100%;
-  margin-bottom: 1rem;
+
+
+.faq-item {
+  border: 1px solid #ddd;
   background-color: #fff;
 }
 
-.table-responsive th,
-.table-responsive td {
-  white-space: nowrap;
+.question {
+  background-color: rgb(255,82 ,0 );
+  color: white;
+  padding: 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.table-responsive th {
-  background-color: #f0f0f0;
+.toggle-icon {
+  font-size: 14px;
 }
 
- .dropdown span {
-   color: white /* Color naranjo */ 
+.answer {
+  display: none;
+  padding: 15px;
+  font-size: 16px;
 }
-
-.logo a {
-    color: rgb(255,82 ,0 ); /* Cambia el color del texto del enlace "Iniciar sesión" a naranja */
-    text-decoration: none; /* Elimina el subrayado predeterminado */
-}
-
-.logo a:hover {
-    text-decoration: none; /* Elimina el subrayado al pasar el ratón sobre el enlace "Iniciar sesión" */
-}
-.dropdown-content a {
-    color: white;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
- }
- 
- .dropdown-content a:hover {
-    background-color: #f1f1f1;
-    color: rgb(0,38,250);
- }
- 
- .dropdown:hover .dropdown-content {
-    display: block;
- }
- .home-button{
-    margin-right: 20px; /* Ajusta el margen entre el botón home y el dropdown según tus preferencias */
-    width: 30px; /* Ancho del botón */
-    height: 30px;
-  }
-  
-  .btn-subir {
-    display:inline-flex;
-    padding: 10px 20px; /* Ajusta el espacio interno según tus preferencias */
-    background-color: #007bff; /* Color de fondo del botón */
-    color: #fff; /* Color del texto del botón */
-    text-decoration: none; /* Elimina la decoración de texto predeterminada */
-    border-radius: 5px; /* Ajusta el radio de borde para esquinas redondeadas */
-    margin-top: 4%; /* Ajusta el margen superior según tus preferencias */
-    margin-right: 10;
-  
-  }
-  
-  /* Agrega estilos hover para el botón */
-  .btn-subir:hover {
-    background-color: #0056b3; /* Cambia el color de fondo al pasar el mouse */
-    /* Puedes agregar más estilos hover según sea necesario */
-  }
- .dropdown-content {
-   display: none;
-   position: absolute;
-   background-color: rgb(0,38,250);
-   min-width: 160px;
-   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-   z-index: 1;}
-
-  footer {
-    display: flex;
-    justify-content: space-around;
-    padding: 2% 0;
-    background-color:rgb(0,38,250);
-    margin-top: auto;
-    
-  }
-  .footer-column {
-    width: 30%;
-    text-align: left;
-  }
-  
-  .footer-column h4 {
-    margin-bottom: 8%;
-    color: rgb(255,82 ,0 );
-   text-align: center;
-  }
-  
-  .footer-column ul {
-    list-style-type: none;
-    padding: 0;
-    text-align: center;
-   
-  }
-  
-  .footer-column li a {
-    text-decoration: none;
-    color: whitesmoke;
-  }
-  
-  .about-us-container {
-      background-color: rgb(255, 82, 0);
-      padding: 15px; /* Espacio entre el cuadro naranja y el contenido interno */
-      border-radius: 10px;
-      margin-left: 10px;
-      margin-right: 10px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-  }
-  
-  .about-us {
-      display: flex;
-  }
-  

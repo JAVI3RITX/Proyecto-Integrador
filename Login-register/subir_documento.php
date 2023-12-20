@@ -3,92 +3,76 @@ session_start();
 require("php/conexion_be.php");
 
 if (!isset($_SESSION['usuario'])) {
-    echo '
-        <script>
-            alert("Debes iniciar sesión para poder entrar a esta página");
-            window.location = "home.php";
-        </script>';
-    session_destroy();
-    die();
+    header("Location: home.php");
+    exit();
 }
 
 $usuario_id = $_SESSION['usuario'];
 
-// Procesar la subida de documentos aquí
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['documento']) && isset($_POST['titulo'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["archivo"])) {
     $titulo = $_POST['titulo'];
-    if (empty($titulo)) {
-        $_SESSION['mensaje_error'] = 'El título del documento es obligatorio.';
-        header("Location: subir_documento.php");
-        exit();
-    }
-
-    $nombreArchivo = $_FILES['documento']['name'];
-    $rutaArchivo = 'uploads/' . $nombreArchivo;
-    $tipoArchivo = pathinfo($rutaArchivo, PATHINFO_EXTENSION);
     $estado = $_POST['estado'];
+    $archivoNombre = $_FILES["archivo"]["name"];
+    $archivoTmpNombre = $_FILES["archivo"]["tmp_name"];
+    $archivoError = $_FILES["archivo"]["error"];
 
-    // Verificar el tipo de archivo permitido
-    if ($tipoArchivo != "pdf" && $tipoArchivo != "xlsx") {
-        $_SESSION['mensaje_error'] = 'Solo se permiten archivos PDF y Excel (XLSX).';
-        header("Location: subir_documento.php");
+    // Verificar si hay un error en la subida del archivo
+    if ($archivoError !== UPLOAD_ERR_OK) {
+        $_SESSION['mensaje_error'] = 'Error al subir el archivo.';
+        header('Location: subir_documento.php');
         exit();
     }
 
-    if (move_uploaded_file($_FILES['documento']['tmp_name'], $rutaArchivo)) {
-        // Insertar información del documento en la base de datos
-        $sql = "INSERT INTO documentos (usuario_id, nombre_archivo, ruta_archivo, titulo, estado) VALUES ('$usuario_id', '$nombreArchivo', '$rutaArchivo', '$titulo', '$estado')";
-        if ($con->query($sql) === TRUE) {
-            $_SESSION['mensaje_exito'] = 'Documento subido con éxito.';
-            header("Location: subir_documento.php");
+    // Obtener la extensión del archivo
+    $extension = pathinfo($archivoNombre, PATHINFO_EXTENSION);
+
+    // Definir los tipos de documentos permitidos
+    $tiposDocumentoPermitidos = ['pdf', 'xls', 'xlsx'];
+
+    // Verificar si la extensión está en la lista de tipos permitidos
+    if (in_array(strtolower($extension), $tiposDocumentoPermitidos)) {
+        $rutaAlmacenamiento = "uploads/";
+        $archivoNombreFinal = $archivoNombre;
+        $rutaFinal = $rutaAlmacenamiento . $archivoNombreFinal;
+
+        // Mover el archivo al directorio de almacenamiento
+        if (move_uploaded_file($archivoTmpNombre, $rutaFinal)) {
+            // Insertar información del documento en la base de datos
+            $tipoDocumento = pathinfo($archivoNombre, PATHINFO_EXTENSION);
+            $sql = "INSERT INTO documentos (usuario_id, nombre_archivo, ruta_archivo, titulo, estado, tipo_documento) 
+                    VALUES ('$usuario_id', '$archivoNombre', '$rutaFinal', '$titulo', '$estado', '$tipoDocumento')";
+            $con->query($sql);
+
+            $_SESSION['mensaje_exito'] = 'Documento subido exitosamente.';
+            header('Location: subir_documento.php');
             exit();
         } else {
-            $_SESSION['mensaje_error'] = 'Error al subir el documento: ' . $con->error;
-            header("Location: subir_documento.php");
+            $_SESSION['mensaje_error'] = 'Error al mover el archivo al directorio de almacenamiento.';
+            header('Location: subir_documento.php');
             exit();
         }
     } else {
-        $_SESSION['mensaje_error'] = 'Error al subir el archivo.';
-        header("Location: subir_documento.php");
+        $_SESSION['mensaje_error'] = 'El tipo de documento no es válido.';
+        header('Location: subir_documento.php');
         exit();
     }
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subir Documento</title>
-    <link rel="stylesheet" href="style4.css">
-    <script>
-        function validarFormulario() {
-            var inputFile = document.getElementById('documento');
-            var tituloInput = document.getElementById('titulo');
-            var filePath = inputFile.value;
-
-            if (tituloInput.value.trim() === '') {
-                alert('El título del documento es obligatorio.');
-                return false;
-            }
-
-            var allowedExtensions = /(\.pdf|\.xlsx)$/i;
-
-            if (!allowedExtensions.exec(filePath)) {
-                alert('Solo se permiten archivos PDF y Excel (XLSX).');
-                inputFile.value = '';
-                return false;
-            } else {
-                return true;
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="styless4.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-
-<header>
-        <div class="navbar">
+    <header>
+    <div class="navbar">
             <div class="dropdown" onclick="toggleDropdown()">
             <img src="imagenes/menu.png" alt="Menú" style="width: 30px; height: 30px;">
                 <div class="dropdown-content" id="myDropdown">
@@ -104,49 +88,57 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['documento']) && isset
                 <img src="imagenes/home.png" alt="home"style="width: 30px; height: 30px;">
             </a>
         </div>
-    </header> 
+    </header>
     <br>
     <br>
     <br>
-
     <div class="container">
         <h1>Subir Documento</h1>
         <?php
-        // Muestra el mensaje de éxito o error
+        // Muestra la alerta de éxito
         if (isset($_SESSION['mensaje_exito'])) {
-            echo "<p class='mensaje-exito'>{$_SESSION['mensaje_exito']}</p>";
+            echo "<script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Éxito',
+                    text: '{$_SESSION['mensaje_exito']}'
+                });
+                </script>";
             unset($_SESSION['mensaje_exito']);
-        } elseif (isset($_SESSION['mensaje_error'])) {
-            echo "<p class='mensaje-error'>{$_SESSION['mensaje_error']}</p>";
+}
+        // Muestra la alerta de error
+        elseif (isset($_SESSION['mensaje_error'])) {
+            echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: '{$_SESSION['mensaje_error']}'
+                });
+                </script>";
             unset($_SESSION['mensaje_error']);
-        }
+}
         ?>
-        <form method="post" action="" enctype="multipart/form-data" onsubmit="return validarFormulario();">
-            <label for="titulo">Título del documento:</label>
-            <input type="text" name="titulo" id="titulo" required>
+
+        <form action="subir_documento.php" method="POST" enctype="multipart/form-data">
+            <label for="titulo">Título:</label>
+            <input type="text" name="titulo" required>
             <br>
-            <label for="estado">Selecciona el estado del documento:</label>
-            <select name="estado" id="estado">
+            <label for="estado">Estado:</label>
+            <select name="estado" required>
                 <option value="publico">Público</option>
                 <option value="privado">Privado</option>
             </select>
             <br>
-            <label for="documento">Selecciona un documento:</label>
-            <input type="file" name="documento" id="documento" accept=".pdf, .xlsx">
-            <br>
-            <input type="submit" value="Subir Documento">
+            <label for="archivo">Seleccionar Archivo:</label>
+            <input type="file" name="archivo" accept=".pdf, .xls, .xlsx" required>
+            <input type="submit" value="Subir archivo">
         </form>
-        <a href="ver_documentos.php">Ver mis documentos</a>
+        <center>
+            <a href="ver_documentos.php">Ver mis documentos</a>
+        </center>
     </div>
-</body>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<footer>
+
+    <footer>
     <div class="footer-column">
         <h4>Videos de ayuda</h4>
         <ul>
@@ -172,5 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['documento']) && isset
             <!-- Agrega más elementos de la lista según sea necesario -->
         </ul>
     </div>
-</footer>
+    </footer>
+</body>
+
 </html>

@@ -4,6 +4,8 @@ session_start();
 // Incluir conexión a la base de datos
 require("php/conexion_be.php");
 
+$mostrarVerMas = !isset($_SESSION['usuario']) || (isset($_SESSION['rol']) && $_SESSION['rol'] !== 'administrador' && $_SESSION['rol'] !== 'usuario');
+
 // Verificar si el usuario está logeado
 $usuarioLogeado = isset($_SESSION['usuario']);
 
@@ -23,7 +25,7 @@ $rolUsuario = $usuarioLogeado ? $_SESSION['rol'] : 'invitado';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style_home.css">
+    <link rel="stylesheet" href="style_homee.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>plantilla</title>
 </head>
@@ -41,7 +43,7 @@ $rolUsuario = $usuarioLogeado ? $_SESSION['rol'] : 'invitado';
         
         // Mostrar opciones específicas para el rol de administrador
         if ($rolUsuario == 'administrador') {          
-            echo '<a href="#!">Modificar cuenta</a>';
+            echo '<a href="admin.php">Modificar cuenta</a>';
             echo '<a href="agregarVideo.php">Mis videos</a>';
             echo '<a href="videos.php">Todos Los Videos</a>';
             echo '<a href="ver_documentos.php">Mis documentos</a>';
@@ -51,7 +53,7 @@ $rolUsuario = $usuarioLogeado ? $_SESSION['rol'] : 'invitado';
 
         // Mostrar opciones específicas para el rol de usuario
         if ($rolUsuario == 'usuario') {
-            echo '<a href="#!">Modificar cuenta</a>';
+            echo '<a href="usuariosedit.php">Modificar cuenta</a>';
             echo '<a href="agregarVideo.php">Mis videos</a>';
             echo '<a href="videos.php">Todos Los Videos</a>';
             echo '<a href="ver_documentos.php">Mis documentos</a>';
@@ -110,10 +112,22 @@ if ($rolUsuario == 'administrador') {
 <div class="videooo">
     <h1>-HOME-</h1>
     <div class="videos">
-        <video class="video" width="640" height="360" controls>
-            <source src="video.mp4" type="video/mp4">
+        <video class="video" width="320" height="200" controls>
+            <source src="Videos\video1.mp4" type="video/mp4">
+        </video>
+        <video class="video" width="320" height="200" controls>
+            <source src="Videos\video2.mp4" type="video/mp4">
         </video>
     </div>
+
+    <center>
+        <?php if ($mostrarVerMas) : ?>
+            <a href="index.php" class="btn-subir">¿Quieres ver mas videos?<br>Registrate</a>
+        <?php endif; ?> 
+    </center>
+
+
+
 </div>
 
 <div id="titulooo">
@@ -123,10 +137,10 @@ if ($rolUsuario == 'administrador') {
 <div class="orange-container"> <!--AQUI VAN LAS plataformas amigas-->
     <a href="https://www.ucentral.cl" class="black-square">
         <div class="contentt">
-            <img src="IMG\ucen.png" alt="UCEN">
-            <div class="text">
-              <h3>UCENTRAL</h3>
-              <p>La UCEN es una de las universidades privadas más antiguas de Chile, está acreditada por 4 años y es parte del Sistema de Acceso a la educación superior.</p>
+            <img src="IMG\ucen.png" alt="UCEN" class="img">
+            <div class="text" >
+                <h3 >UCENTRAL</h3>
+                <p class="oculto">La UCEN es una de las universidades privadas más antiguas de Chile, está acreditada por 4 años y es parte del Sistema de Acceso a la educación superior.</p>
             </div>
         </div>
     </a>
@@ -162,7 +176,7 @@ if ($rolUsuario == 'administrador') {
     </a>
     <a href="https://www.youtube.com/@HECTORSEPULVEDA" class="black-square">
         <div class="contentt">
-            <img src="IMG\YOUTUBE.png" alt="youtube hector">
+            <img src="IMG\HECTOR.png" alt="youtube hector">
             <div class="text">
                 <h3>HECTOR SEPULVEDA</h3>
                 <p>Actividades y contenidos relacionados con Pitch, Narrativas Comerciales, Storytelling, enfocado en las metodologías Power Pitch y Storytellinc de autoría de Héctor Sepúlveda.</p>
@@ -171,7 +185,7 @@ if ($rolUsuario == 'administrador') {
     </a>
     <a href="https://www.youtube.com/@centrodenegociossercotecco2536" class="black-square">
         <div class="contentt">
-            <img src="IMG\YOUTUBE.png" alt="youtube Centro de Negocios Sercotec Coquimbo">
+            <img src="IMG\CENTROS.png" alt="youtube Centro de Negocios Sercotec Coquimbo">
             <div class="text">
                 <h3>Centro de Negocios Sercotec Coquimbo</h3>
                 <p>Canal de You Tube del Centro de Negocios Sercotec Coquimbo.
@@ -226,9 +240,10 @@ if ($rolUsuario == 'administrador') {
         </div>
         <div class="text-container">
             <br>
-            <p>Nos definimos como entusiastas de la Ingeniería Civil en Computación e Informática, actualmente avanzando en nuestro cuarto año en la Universidad Central de Coquimbo. En este viaje académico, nos sumergimos en las complejidades de la tecnología, especializándonos en disciplinas como HTML, CSS y JavaScript. Estas herramientas no solo son códigos para nosotros; son puentes hacia la creación, el diseño y la interactividad. Además, exploramos el vasto mundo de las bases de datos, aprovechando su poder para estructurar y gestionar información vital en nuestros proyectos. Nos impulsa la pasión por la programación y la resolución de problemas, y estamos comprometidos a llevar la innovación a nuevos horizontes. Únete a nosotros mientras exploramos el fascinante mundo donde la creatividad se encuentra con el código. 🌐💻✨</p>
+            <p class="corto">La Universidad Central de Chile forma ciudadanos integrales con valores de tolerancia y diversidad.</p>
+            <p class="largo">Nos definimos como entusiastas de la Ingeniería Civil en Computación e Informática, actualmente avanzando en nuestro cuarto año en la Universidad Central de Coquimbo. En este viaje académico, nos sumergimos en las complejidades de la tecnología, especializándonos en disciplinas como HTML, CSS y JavaScript. Estas herramientas no solo son códigos para nosotros; son puentes hacia la creación, el diseño y la interactividad. Además, exploramos el vasto mundo de las bases de datos, aprovechando su poder para estructurar y gestionar información vital en nuestros proyectos. Nos impulsa la pasión por la programación y la resolución de problemas, y estamos comprometidos a llevar la innovación a nuevos horizontes. Únete a nosotros mientras exploramos el fascinante mundo donde la creatividad se encuentra con el código. 🌐💻✨</p>
             <br>
-            <p>La Universidad Central de Chile (UCEN) es una institución de educación superior de carácter nacional y privado —sin fines de lucro— que asume la formación académica desde un alto compromiso con el país para entregar a su patria un ciudadano con conciencia social, promotor de los valores de tolerancia, pluralismo y equidad, así como también del respeto y aceptación de la diversidad en todos los ámbitos de su quehacer. La UCEN tiene como valor fundacional la formación integral de sus estudiantes. Esta implica una perspectiva de aprendizaje intencionada, tendiente al fortalecimiento de una personalidad responsable, crítica, participativa, creativa, solidaria y con capacidad de reconocer e interactuar con su entorno y así construir su identidad cultural. Busca promover el crecimiento humano a través de un proceso que supone una visión multidimensional de la persona y tiende a desarrollar aspectos como la inteligencia emocional, intelectual, social, material y ética-valoral. También resulta de vital importancia el papel de la corporación como centro irradiador y difusor del conocimiento, arte, el deporte, las tradiciones y la historia patria en la sociedad. </p>
+            <p class="largo">La Universidad Central de Chile (UCEN) es una institución de educación superior de carácter nacional y privado —sin fines de lucro— que asume la formación académica desde un alto compromiso con el país para entregar a su patria un ciudadano con conciencia social, promotor de los valores de tolerancia, pluralismo y equidad, así como también del respeto y aceptación de la diversidad en todos los ámbitos de su quehacer. La UCEN tiene como valor fundacional la formación integral de sus estudiantes. Esta implica una perspectiva de aprendizaje intencionada, tendiente al fortalecimiento de una personalidad responsable, crítica, participativa, creativa, solidaria y con capacidad de reconocer e interactuar con su entorno y así construir su identidad cultural. Busca promover el crecimiento humano a través de un proceso que supone una visión multidimensional de la persona y tiende a desarrollar aspectos como la inteligencia emocional, intelectual, social, material y ética-valoral. También resulta de vital importancia el papel de la corporación como centro irradiador y difusor del conocimiento, arte, el deporte, las tradiciones y la historia patria en la sociedad. </p>
         </div>
     </div>
 </div>
@@ -264,5 +279,27 @@ if ($rolUsuario == 'administrador') {
         </ul>
     </div>
 </footer>
+<button onclick="topFunction()" id="myBtn" title="Go to top" style="display: none;">
+    <img src="up.png" alt="Go to top">
+</button>
+
+    <script>
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            var mybutton = document.getElementById("myBtn");
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
 
 </html>
+
